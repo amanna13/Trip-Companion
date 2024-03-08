@@ -1,4 +1,4 @@
-# Trip ompanion!
+# Trip Companion!
 
 ## Description
 "Trip Companion" is a Streamlit web application that utilizes the Gemini Generative AI API to provide informative descriptions for uploaded images of historical places. It simulates a tour guide experience, generating details about architectural features, descriptions, directions, and more.

@@ -22,7 +22,15 @@ def detect_images(prompt, uploaded_img):
         HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE 
         }
         )
-    return response.text
+    try:
+        print(response.text)
+    except ValueError:
+        # If the response doesn't contain text, check if the prompt was blocked.
+        print(response.prompt_feedback)
+        # Also check the finish reason to see if the response was blocked.
+        print(response.candidates[0].finish_reason)
+        # If the finish reason was SAFETY, the safety ratings have more details.
+        print(response.candidates[0].safety_ratings)
 
 def input_image_setup(uploaded_file):
     if uploaded_file is not None:
@@ -38,31 +46,6 @@ def input_image_setup(uploaded_file):
         return image_parts
     else:
         raise FileNotFoundError("No File Uploaded")
-
-#Safety settings
-    
-safety_settings = [
-    {
-        "category": "HARM_CATEGORY_DANGEROUS",
-        "threshold": "BLOCK_NONE",
-    },
-    {
-        "category": "HARM_CATEGORY_HARASSMENT",
-        "threshold": "BLOCK_NONE",
-    },
-    {
-        "category": "HARM_CATEGORY_HATE_SPEECH",
-        "threshold": "BLOCK_NONE",
-    },
-    {
-        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-        "threshold": "BLOCK_NONE",
-    },
-    {
-        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-        "threshold": "BLOCK_NONE",
-    },
-]
 
 
 st.title("See, Snap, Learn !")

@@ -13,7 +13,7 @@ genai.configure(api_key = os.getenv('Gemini_Api_Key'))
 
 def detect_images(prompt, uploaded_img):
     model = genai.GenerativeModel('gemini-pro-vision')
-    response = model.generate_content([prompt, uploaded_img[0]], safety_settings='BLOCK_NONE')
+    response = model.generate_content([prompt, uploaded_img[0]], safety_settings=BLOCK_NONE)
     return response.text
 
 def input_image_setup(uploaded_file):

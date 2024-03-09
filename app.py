@@ -22,11 +22,11 @@ def detect_images(prompt, uploaded_img):
         HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE 
         }
         )
-    try:
-        print(response.text)
-    except ValueError:
-        # If the response doesn't contain text, check if the prompt was blocked.
-        print(response.prompt_feedback)
+    # try:
+    print(response.text)
+    # except ValueError:
+    #     # If the response doesn't contain text, check if the prompt was blocked.
+    #     print(response.prompt_feedback)
 
 def input_image_setup(uploaded_file):
     if uploaded_file is not None:

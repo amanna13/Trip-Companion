@@ -4,7 +4,6 @@ import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import streamlit as st
 from PIL import Image
-import time 
 
 
 load_dotenv()
@@ -22,8 +21,8 @@ def detect_images(prompt, uploaded_img):
         HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE 
         }
         )
-    
-    print(response.text)
+    return response.text
+
     # except ValueError:
     #     # If the response doesn't contain text, check if the prompt was blocked.
     #     print(response.prompt_feedback)
@@ -50,7 +49,7 @@ def input_image_setup(uploaded_file):
 
 st.title("See, Snap, Learn !")
 st.header(":orange[Upload Images of Historical Places]")
-uploaded_file = st.file_uploader("", type=['png', 'jpg', 'jpeg'])
+uploaded_file = st.file_uploader("", type=['png', 'jpg', 'jpeg', 'webp'])
 
 if uploaded_file is not None:
     try:
@@ -62,10 +61,11 @@ if uploaded_file is not None:
 
 
 submit=st.button("Discover🔎", type="primary")
-prompt = """You are a tour guide. You have to see images and give informative descriptions on the same. The image will be of Historical landmarks, or nature scene from all over the world. 
-            You must provide me the architectural features of it in tabular or buleted at the begining (like height, area, constructed by). Provide a historical description of the landmark in the image.
-            Find travel information for the landmark in the image (timings, fees, directions). Make seperate headings for each section.
-           """
+prompt = """You are a tourist guide where you need to see the historical places and provide information about them. 
+Provide architectural  information about the place in bullet points(Such as constructed by, constructed time, place, size etc). 
+Give a brief history of the place. Provide the significance of the place. Provide time and cost details for the visit. 
+Also, provide the best time to visit the place. Finally, provide the best way to reach the place along with Google Maps link. 
+Each section should have a heading."""
 
 
 if submit:
@@ -73,8 +73,8 @@ if submit:
         st.error("Please upload an image before submitting.")
     else:
         image_data = input_image_setup(uploaded_file)
-        with st.spinner('Just a moment...'):
-            time.sleep(25)
+        # with st.spinner('Just a moment...'):
+        #     time.sleep(25)
         response = detect_images(prompt, image_data)
         
         st.subheader("Here's what we found 👀")

@@ -27,10 +27,6 @@ def detect_images(prompt, uploaded_img):
     except ValueError:
         # If the response doesn't contain text, check if the prompt was blocked.
         print(response.prompt_feedback)
-        # Also check the finish reason to see if the response was blocked.
-        print(response.candidates[0].finish_reason)
-        # If the finish reason was SAFETY, the safety ratings have more details.
-        print(response.candidates[0].safety_ratings)
 
 def input_image_setup(uploaded_file):
     if uploaded_file is not None:

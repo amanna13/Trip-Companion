@@ -110,7 +110,6 @@ width: 100%;
 # background-color:#071013;
 # color: #8EA8C3;
 background: rgba(7, 16, 19, 0.24);
-border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(6.6px);
 -webkit-backdrop-filter: blur(6.6px);

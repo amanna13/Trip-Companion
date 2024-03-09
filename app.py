@@ -62,7 +62,8 @@ if uploaded_file is not None:
 
 
 submit=st.button("Discover🔎", type="primary")
-prompt = """Become a tourist guide! Analyze the image and provide a concise description of its architectural features, historical background, how to reach the location (including Google Maps link), opening hours, and entry fees (if applicable).           """
+prompt = """Become a tourist guide! Analyze the image and provide a concise description of its architectural features, 
+            historical background, how to reach the location (including Google Maps link), opening hours, and entry fees (if applicable)."""
 
 
 if submit:

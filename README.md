@@ -10,7 +10,7 @@
 - Get details on how to reach the place, timings, entry fees, and Google Maps direction links.
 
 ## Usage
-1. Visit the application [here](#https://trip-companion.streamlit.app/).
+1. Visit the application [here](https://trip-companion.streamlit.app/).
 2. Upload an image of a historical place or a nature scene.
 3. Click on the "Discover🔎" button.
 4. Wait for the AI to process the image and provide information.

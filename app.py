@@ -22,11 +22,15 @@ def detect_images(prompt, uploaded_img):
         HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE 
         }
         )
-    # try:
-    print(response.text)
-    # except ValueError:
-    #     # If the response doesn't contain text, check if the prompt was blocked.
-    #     print(response.prompt_feedback)
+    try:
+        print(response.text)
+    except ValueError:
+        # If the response doesn't contain text, check if the prompt was blocked.
+        print(response.prompt_feedback)
+        # Also check the finish reason to see if the response was blocked.
+        print(response.candidates[0].finish_reason)
+        # If the finish reason was SAFETY, the safety ratings have more details.
+        print(response.candidates[0].safety_ratings)
 
 def input_image_setup(uploaded_file):
     if uploaded_file is not None:
@@ -58,11 +62,7 @@ if uploaded_file is not None:
 
 
 submit=st.button("Discover🔎", type="primary")
-prompt = """You are a tour guide. You have to see images and give informative descriptions on the same. The image may be of Historical landmarks, or nature scene from all over the world. It must be
-            of some educational experiences. You must provide me the architectural features of it in tabular or buleted at the begining like height 
-            area constructed by. And after this you must give me a description of it.
-            Explain everything like a tourist guide, how to reach this place. Also provide the timings, entry fees etc. Provide me the exact google maps direction link only. Make seperate headings for each section.
-           """
+prompt = """Become a tourist guide! Analyze the image and provide a concise description of its architectural features, historical background, how to reach the location (including Google Maps link), opening hours, and entry fees (if applicable).           """
 
 
 if submit:

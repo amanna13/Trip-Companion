@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 import google.generativeai as genai
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import streamlit as st
 from PIL import Image
 import time 
@@ -13,7 +14,15 @@ genai.configure(api_key = os.getenv('Gemini_Api_Key'))
 
 def detect_images(prompt, uploaded_img):
     model = genai.GenerativeModel('gemini-pro-vision')
-    response = model.generate_content([prompt, uploaded_img[0]], safety_settings=safety_settings)
+    response = model.generate_content ([prompt, uploaded_img[0]], 
+                                       safety_settings={
+        HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_DANGEROUS: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE 
+        }
+        )
     return response.text
 
 def input_image_setup(uploaded_file):

@@ -50,7 +50,7 @@ submit=st.button("Discover🔎", type="primary")
 prompt = """You are a tour guide. You have to see images and give informative descriptions on the same. The image may be of Historical landmarks, or nature scene. It must be
             of some educational experiences. You must provide me the architectural features of it in tabular or buleted at the begining like height 
             area constructed by. And after this you must give me a description of it.
-            Explain everything like a tourist guide, how to reach this place. Also provide the timings, entry fees etc. rovide me the exact google maps direction link only.
+            Explain everything like a tourist guide, how to reach this place. Also provide the timings, entry fees etc. rovide me the exact google maps direction link only. Make seperate headings for each section.
            """
 
 

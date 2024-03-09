@@ -32,7 +32,5 @@
 streamlit run your_app_name.py
 ```
 
-> Important - The information provided may be inaccurate. Double-check responses for accuracy 
-
 ### Developed with ❤ by Ambarish.
 

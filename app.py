@@ -60,7 +60,7 @@ if submit:
     else:
         image_data = input_image_setup(uploaded_file)
         with st.spinner('Just a moment...'):
-            time.sleep(20)
+            time.sleep(25)
         response = detect_images(prompt, image_data)
         
         st.subheader("Here's what we found 👀")

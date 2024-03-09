@@ -13,7 +13,7 @@ genai.configure(api_key = os.getenv('Gemini_Api_Key'))
 
 def detect_images(prompt, uploaded_img):
     model = genai.GenerativeModel('gemini-pro-vision')
-    response = model.generate_content([prompt, uploaded_img[0]], safety_settings=BLOCK_NONE)
+    response = model.generate_content([prompt, uploaded_img[0]], safety_settings=safety_settings)
     return response.text
 
 def input_image_setup(uploaded_file):
@@ -31,6 +31,30 @@ def input_image_setup(uploaded_file):
     else:
         raise FileNotFoundError("No File Uploaded")
 
+#Safety settings
+    
+safety_settings = [
+    {
+        "category": "HARM_CATEGORY_DANGEROUS",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_HARASSMENT",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_HATE_SPEECH",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "threshold": "BLOCK_NONE",
+    },
+]
 
 
 st.title("See, Snap, Learn !")
